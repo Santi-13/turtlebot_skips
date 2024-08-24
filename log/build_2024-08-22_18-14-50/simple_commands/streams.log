@@ -1,0 +1,25 @@
+[0.639s] Invoking command in '/home/sanmaster/turtlebot_development/src/simple_commands': PYTHONPATH=/home/sanmaster/turtlebot_development/build/simple_commands/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/simple_commands build --build-base /home/sanmaster/turtlebot_development/build/simple_commands/build install --record /home/sanmaster/turtlebot_development/build/simple_commands/install.log --single-version-externally-managed install_data
+[0.878s] running egg_info
+[0.878s] writing ../../build/simple_commands/simple_commands.egg-info/PKG-INFO
+[0.879s] writing dependency_links to ../../build/simple_commands/simple_commands.egg-info/dependency_links.txt
+[0.879s] writing entry points to ../../build/simple_commands/simple_commands.egg-info/entry_points.txt
+[0.879s] writing requirements to ../../build/simple_commands/simple_commands.egg-info/requires.txt
+[0.879s] writing top-level names to ../../build/simple_commands/simple_commands.egg-info/top_level.txt
+[0.880s] reading manifest file '../../build/simple_commands/simple_commands.egg-info/SOURCES.txt'
+[0.881s] adding license file 'LICENSE'
+[0.881s] writing manifest file '../../build/simple_commands/simple_commands.egg-info/SOURCES.txt'
+[0.881s] running build
+[0.882s] running build_py
+[0.882s] copying simple_commands/movement_publisher.py -> /home/sanmaster/turtlebot_development/build/simple_commands/build/lib/simple_commands
+[0.882s] running install
+[0.882s] running install_lib
+[0.883s] copying /home/sanmaster/turtlebot_development/build/simple_commands/build/lib/simple_commands/movement_publisher.py -> /home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple_commands
+[0.883s] byte-compiling /home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple_commands/movement_publisher.py to movement_publisher.cpython-310.pyc
+[0.884s] running install_data
+[0.884s] running install_egg_info
+[0.885s] removing '/home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple_commands-0.0.0-py3.10.egg-info' (and everything under it)
+[0.885s] Copying ../../build/simple_commands/simple_commands.egg-info to /home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple_commands-0.0.0-py3.10.egg-info
+[0.886s] running install_scripts
+[0.904s] Installing movement_publisher script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+[0.904s] writing list of installed files to '/home/sanmaster/turtlebot_development/build/simple_commands/install.log'
+[0.923s] Invoked command in '/home/sanmaster/turtlebot_development/src/simple_commands' returned '0': PYTHONPATH=/home/sanmaster/turtlebot_development/build/simple_commands/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/simple_commands build --build-base /home/sanmaster/turtlebot_development/build/simple_commands/build install --record /home/sanmaster/turtlebot_development/build/simple_commands/install.log --single-version-externally-managed install_data

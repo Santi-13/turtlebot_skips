@@ -1,0 +1,3 @@
+[console_scripts]
+movement_publisher = simple_commands.movement_publisher:main
+
