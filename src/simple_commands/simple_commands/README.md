@@ -46,7 +46,9 @@ Antes de ejecutar el código en MATLAB, es necesario realizar la siguiente confi
 2. **Verificar la conexión de la cámara**: Utiliza el siguiente comando para verificar que la cámara esté conectada correctamente.
    ```bash
    v4l2-ctl --list-devices
+   
    Para comprobar el correcto funcionamiento de la camara, se pueden utilizar distintos visualizadores como RViz2 o rqt_image_view, que proporcionan una interfaz gráfica para visualizar la cámara.
+   
     ```bash
     sudo apt install ros-humble-rviz2
     sudo apt install ros-humble-rqt-image-view
