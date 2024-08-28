@@ -46,12 +46,14 @@ Antes de ejecutar el código en MATLAB, es necesario realizar la siguiente confi
 2. **Verificar la conexión de la cámara**: Utiliza el siguiente comando para verificar que la cámara esté conectada correctamente.
    ```bash
    v4l2-ctl --list-devices
-3. **Instalar RViz2**: RViz2 es un puerto de RViz para ROS 2, que proporciona una interfaz gráfica para visualizar el robot, datos de sensores, mapas, y más.
+   Para comprobar el correcto funcionamiento de la camara, se pueden utilizar distintos visualizadores como RViz2 o rqt_image_view, que proporcionan una interfaz gráfica para visualizar la cámara.
     ```bash
     sudo apt install ros-humble-rviz2
-3. **EXTRA**: En caso de que se desee probar la conexión de la cámara de manera externa a MATLAB es necesario instalar rqt_image_view, la cual es herramienta permite visualizar imágenes de los tópicos de ROS 2 fuera de MATLAB.
-    ```bash
     sudo apt install ros-humble-rqt-image-view
+   ```bash
+   rviz2
+   ros2 run rqt_image_view rqt_image_view
+    
 ### Componentes Principales
 - **Suscripción al Tópico de Imágenes**:
     - `imageSub = ros2subscriber(movementNode,'/image_raw', 'sensor_msgs/Image');`: Crea un suscriptor para recibir mensajes de tipo `sensor_msgs/Image` desde el tópico `/image_raw`.
