@@ -25,8 +25,8 @@ kpd = 1;
 kpr = 1;
 
 % Posición objetivo
-xd = 0.5;
-yd = 0.5;
+xd = 0.2;
+yd = 0.2;
 
 % Constantes
 vMax = 0.18;
@@ -94,8 +94,8 @@ while t < tf
 
    figure(2)
    [imgData, imgStatus, imgStatusText] = receive(imageSub);
-   a = rosReadImage(imgData);
-   imshow(a);
+   a = imshow.width, imgData.height, 3]
+   ();
    drawnow;
 end
 
