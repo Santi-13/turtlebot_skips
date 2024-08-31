@@ -4,10 +4,10 @@
 
 movementNode = ros2node('/movement_publisher_node');
 
-twistPub = ros2publisher(movementNode,'/cmd_vel','geometry_msgs/Twist');
+twistPub = ros2publisher(movementNode,'/cmd_vel2','geometry_msgs/Twist');
 twistPubMsg = ros2message(twistPub);
 
-jointStateSub = ros2subscriber(movementNode, '/joint_states', 'sensor_msgs/JointState', @readJointStates);
+%jointStateSub = ros2subscriber(movementNode, '/joint_states', 'sensor_msgs/JointState', @readJointStates);
 global v_r
 global w_r
 
@@ -38,6 +38,9 @@ kpr = 1;
 % Posición objetivo
 xd = 0.5;
 yd = 0.5;
+
+w=0;
+v=0;
 
 % Constantes
 vMax = 0.18;
