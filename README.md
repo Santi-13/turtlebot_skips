@@ -25,8 +25,6 @@ El sistema será evaluado mediante simulaciones y pruebas físicas, integrando d
 5. **Control embebido**: Controlar un motor de DC mediante un microcontrolador ESP32 y visualizar datos en MATLAB.
 6. **Procesamiento de imágenes**: Integrar una cámara para leer imágenes desde MATLAB.
 
-## Metodología
-
 ### Etapa 1: Investigación y Diseño
 - Investigar el estado del arte en la automatización robótica.
 - Diseñar la arquitectura de control y automatización del sistema.
@@ -43,9 +41,9 @@ El sistema será evaluado mediante simulaciones y pruebas físicas, integrando d
 - Presentar el funcionamiento final del sistema.
 
 ## Entregables
-1. **Semana 1**: Diseño detallado de la solución del reto (reporte en formato IEEE).
-2. **Semana 4**: Simulación de algoritmos de control en MATLAB y control de motores.
-3. **Semana 5**: Enlace de comunicación Wi-Fi entre la PC, ESP32 y robot, y algoritmo de coordinación entre robots.
+1. **Semana 1**: Diseño detallado de la solución del reto (reporte en formato IEEE). Esto se puede encontrar en [`/src/documentation/`](src/documentation/).
+2. **Semana 4**: Simulación de algoritmos de control en MATLAB y control de motores. Esto se puede encontrar en [`/src/simple_commands/simple_commands/navigation/`](src/simple_commands/simple_commands/navigation/).
+3. **Semana 5**: Enlace de comunicación Wi-Fi entre la PC, ESP32 y robot, y algoritmo de coordinación entre robots. Esto se puede encontrar en [`/src/simple_commands/simple_commands/esp32/`](src/simple_commands/simple_commands/esp32/).
 4. **Semana 6**: Presentación final del sistema robótico integrado y documentación técnica completa.
 
 ## Requisitos Técnicos
