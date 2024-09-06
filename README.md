@@ -53,7 +53,5 @@ El sistema será evaluado mediante simulaciones y pruebas físicas, integrando d
 
 ## Recursos
 - [Turtlebot3 Burger](https://www.robotis.us/turtlebot-3-burger-us/)
-- Microcontrolador ESP32
+- [Microcontrolador ESP32](https://www.amazon.com.mx/desarrollo-Procesador-microcontrolador-Bluetooth-integrado/dp/B07RY9MVCV)
 - Cámara web para el procesamiento de imágenes
-
-
