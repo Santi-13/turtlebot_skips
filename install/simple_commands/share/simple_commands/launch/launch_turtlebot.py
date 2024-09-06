@@ -1,30 +1,57 @@
 import os
-
 from ament_index_python.packages import get_package_share_directory
 
-from launch import LaunchDescription
-from launch.actions import  SetEnvironmentVariable, IncludeLaunchDescription
-
-from launch.launch_description_sources import PythonLaunchDescriptionSource
+import launch
+from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
+from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
+from launch_ros.substitutions import FindPackageShare
+
+
 
 import xacro
 
+
 def generate_launch_description():
-    # Loading URDF file into a parameter
+    # Define the URDF path
     bringup_dir = get_package_share_directory('simple_commands')
+    xacro_path = os.path.join(bringup_dir, 'urdf', 'turtlebot3_burger.urdf.xacro')
+    robot_description_content = xacro.process_file(xacro_path).toxml()
 
-    declared_arguments = []
-
-    # Nodes Initialization
-    gazebo_ros_node = Node(
-        package='gazebo_ros',
-        executable='spawn_entity.py',
-        arguments=['-entity', 'turtlebot3', '-topic', 'robot_description'],
-        output='screen',
+    robot_description_content = Command(
+        [
+            PathJoinSubstitution([FindExecutable(name="xacro")]),
+            " ",
+            PathJoinSubstitution(
+                [
+                    FindPackageShare("my_second_delta"),
+                    "urdf",
+                    "delta.urdf.xacro",
+                ]
+            ),
+            " ",
+        ]
     )
-
-    nodes = [
-        gazebo_ros_node,
-    ]
-    return LaunchDescription(declared_arguments + nodes)
+    robot_description = {'robot_description': robot_description_content}
+    
+    # Create nodes
+    robot_state_publisher = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[robot_description]
+    )
+    
+    joint_state_publisher = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        parameters=[robot_description]
+    )
+    
+    # Add nodes to the launch description
+    return launch.LaunchDescription([
+        DeclareLaunchArgument('gui', default_value='False',
+                               description='Whether to start the Joint State Publisher GUI'),
+        
+        robot_state_publisher,
+        joint_state_publisher
+    ])
