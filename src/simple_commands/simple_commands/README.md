@@ -1,11 +1,7 @@
-# Proyecto de Control de Trayectoria y Despliegue de Imágenes
+# Descripción General de cada Nodo
 
-Este proyecto en MATLAB se divide en dos partes principales: el control de trayectoria de un robot y el despliegue de imágenes capturadas por una cámara conectada a un entorno ROS 2.
-
-## Parte 1: Control de Trayectoria
-
-### Descripción
-La parte de control de trayectoria de este script se encarga de mover un robot hacia una posición objetivo `(xd, yd)` en el plano 2D, utilizando un controlador basado en la cinemática de un robot diferencial. El script calcula la velocidad lineal y angular necesarias para dirigir al robot desde su posición actual `(x, y, theta)` hacia la meta, asegurando que se mantenga en curso mientras minimiza el error de orientación.
+## robots_formation.m
+Nodo de matlab que mantiene a dos robots en formación en base al movimiento de un lider virtual en medio de los dos, con el objetivo de que puedan llevar una carga entre ellos. Genera las velocidades deseadas por medio de una ley de control con un enfoque geométrico y las publica en los tópicos correspondientes. 
 
 ### Componentes Principales
 - **Inicialización del Nodo y Publicador ROS 2**:
