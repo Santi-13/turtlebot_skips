@@ -118,12 +118,12 @@ while t < tf
         vl = vMax* tanh( ( kpd*d_l ) / vMax);
     end
 
-    if abs(de_1) < 0.02
+    if abs(de_1) < 0.05
        v1 = 0;
        w1 = 0;
     end
 
-    if abs(de_2) < 0.02
+    if abs(de_2) < 0.05
        v2 = 0;
        w2 = 0;
     end
