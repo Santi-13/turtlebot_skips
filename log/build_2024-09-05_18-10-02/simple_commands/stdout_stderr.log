@@ -1,0 +1,29 @@
+running egg_info
+writing ../../build/simple_commands/simple_commands.egg-info/PKG-INFO
+writing dependency_links to ../../build/simple_commands/simple_commands.egg-info/dependency_links.txt
+writing entry points to ../../build/simple_commands/simple_commands.egg-info/entry_points.txt
+writing requirements to ../../build/simple_commands/simple_commands.egg-info/requires.txt
+writing top-level names to ../../build/simple_commands/simple_commands.egg-info/top_level.txt
+reading manifest file '../../build/simple_commands/simple_commands.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file '../../build/simple_commands/simple_commands.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_data
+copying package.xml -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands
+creating /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/urdf
+copying urdf/turtlebot3_burger.urdf.xacro -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/urdf
+copying urdf/turtlebot3_burger.gazebo.xacro -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/urdf
+creating /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+copying meshes/bases/burger_base.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+copying meshes/sensors/lds.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+copying meshes/wheels/left_tire.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+copying meshes/wheels/right_tire.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+running install_egg_info
+removing '/home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple_commands-0.0.0-py3.10.egg-info' (and everything under it)
+Copying ../../build/simple_commands/simple_commands.egg-info to /home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple_commands-0.0.0-py3.10.egg-info
+running install_scripts
+Installing movement_publisher script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+writing list of installed files to '/home/sanmaster/turtlebot_development/build/simple_commands/install.log'
