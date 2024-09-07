@@ -21,4 +21,6 @@ Este proyecto se encarga de recibir la orientación de un TurtleBot3 utilizando 
 En general, este archivo `README.md` describe el propósito del proyecto, los pasos necesarios para configurarlo, y cómo funciona la comunicación entre el TurtleBot3 y el ESP32 mediante MATLAB y TCP.
 
 A continuación se muestra el video completo:
-https://github.com/user-attachments/assets/dba6834e-6b30-4563-8294-68a76a86949d
+
+https://github.com/user-attachments/assets/a4ff4e37-6f0d-44fd-b8f2-34252b189a9b
+
