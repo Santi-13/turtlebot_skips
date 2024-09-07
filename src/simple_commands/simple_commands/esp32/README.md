@@ -2,6 +2,9 @@
 
 Este proyecto se encarga de recibir la orientación de un TurtleBot3 utilizando una IMU, y luego enviar el ángulo de orientación (theta) a un ESP32 mediante una conexión TCP. El ESP32 recibe este valor y puede utilizarlo para realizar acciones, como controlar un dispositivo físico (LED, motor, etc.), aunque en este caso solo se muestra el funcionamiento de la conexión.
 
+https://github.com/user-attachments/assets/dba6834e-6b30-4563-8294-68a76a86949d
+
+
 ## Requisitos
 
 - **TurtleBot3** con IMU configurada y disponible en el tópico `/imu`.
