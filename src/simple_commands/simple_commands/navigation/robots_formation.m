@@ -141,11 +141,11 @@ while t < tf
     twistMsg1.angular.z = w1;
     twistMsg2.linear.x = v2;
     twistMsg2.angular.z = w2;
-
-    twistMsg1.linear.x = 0;
-    twistMsg1.angular.z = 0;
-    twistMsg2.linear.x = 0;
-    twistMsg2.angular.z = 0;
+   
+    % twistMsg1.linear.x = 0;
+    % twistMsg1.angular.z = 0;
+    % twistMsg2.linear.x = 0;
+    % twistMsg2.angular.z = 0;
 
     
 
