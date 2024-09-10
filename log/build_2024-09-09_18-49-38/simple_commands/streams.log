@@ -1,0 +1,21 @@
+[0.639s] Invoking command in '/home/sanmaster/turtlebot_development/build/simple_commands': PYTHONPATH=/home/sanmaster/turtlebot_development/build/simple_commands/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/sanmaster/turtlebot_development/build/simple_commands/build --no-deps symlink_data
+[0.909s] running develop
+[0.910s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[0.910s]   warnings.warn(
+[1.123s] running egg_info
+[1.123s] writing simple_commands.egg-info/PKG-INFO
+[1.123s] writing dependency_links to simple_commands.egg-info/dependency_links.txt
+[1.123s] writing entry points to simple_commands.egg-info/entry_points.txt
+[1.123s] writing requirements to simple_commands.egg-info/requires.txt
+[1.124s] writing top-level names to simple_commands.egg-info/top_level.txt
+[1.125s] reading manifest file 'simple_commands.egg-info/SOURCES.txt'
+[1.126s] writing manifest file 'simple_commands.egg-info/SOURCES.txt'
+[1.127s] running build_ext
+[1.127s] Creating /home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple-commands.egg-link (link to .)
+[1.128s] Installing aruco_publisher script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+[1.128s] Installing aruco_subscriber script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+[1.128s] Installing movement_publisher script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+[1.129s] 
+[1.129s] Installed /home/sanmaster/turtlebot_development/build/simple_commands
+[1.129s] running symlink_data
+[1.151s] Invoked command in '/home/sanmaster/turtlebot_development/build/simple_commands' returned '0': PYTHONPATH=/home/sanmaster/turtlebot_development/build/simple_commands/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py develop --editable --build-directory /home/sanmaster/turtlebot_development/build/simple_commands/build --no-deps symlink_data

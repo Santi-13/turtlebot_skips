@@ -7,6 +7,10 @@ twistMsg1 = ros2message('geometry_msgs/Twist');
 twistPub2 = ros2publisher(movementNode,'/cmd_vel','geometry_msgs/Twist');
 twistMsg2 = ros2message('geometry_msgs/Twist');
 
+% Subscriber
+arucoSub = ros2subscriber(movementNode, '/aruco_coordinates', 'std_msgs/Float64MultiArray', @arucoCallback);
+arucoMsg = ros2message(arucoSub);
+
 %% Tiempo
 tf = 50;
 t = 0;
@@ -201,4 +205,9 @@ end
 
 % Clean up
 clear movementNode twistPub twistMsg;
+
+function [] = arucoCallback(msg)
+    p1 = [msg.data(1); msg.data(2)] / 1000.0;
+    p2 = [msg.data(3); msg.data(4)] / 1000.0;
+end
 

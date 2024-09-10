@@ -23,7 +23,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'movement_publisher = simple_commands.movement_publisher:main'
+            'movement_publisher = simple_commands.movement_publisher:main',
+            'aruco_publisher = simple_commands.aruco_publisher:main',
+            'aruco_subscriber = simple_commands.aruco_subscriber:main'
         ],
     },
 )

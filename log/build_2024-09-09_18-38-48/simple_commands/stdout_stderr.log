@@ -1,0 +1,28 @@
+running develop
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running egg_info
+writing simple_commands.egg-info/PKG-INFO
+writing dependency_links to simple_commands.egg-info/dependency_links.txt
+writing entry points to simple_commands.egg-info/entry_points.txt
+writing requirements to simple_commands.egg-info/requires.txt
+writing top-level names to simple_commands.egg-info/top_level.txt
+reading manifest file 'simple_commands.egg-info/SOURCES.txt'
+writing manifest file 'simple_commands.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/sanmaster/turtlebot_development/install/simple_commands/lib/python3.10/site-packages/simple-commands.egg-link (link to .)
+Installing aruco_publisher script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+Installing aruco_subscriber script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+Installing movement_publisher script to /home/sanmaster/turtlebot_development/install/simple_commands/lib/simple_commands
+
+Installed /home/sanmaster/turtlebot_development/build/simple_commands
+running symlink_data
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/resource/simple_commands -> /home/sanmaster/turtlebot_development/install/simple_commands/share/ament_index/resource_index/packages
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/package.xml -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/launch/launch_turtlebot.py -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/launch
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/urdf/turtlebot3_burger.urdf.xacro -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/urdf
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/urdf/turtlebot3_burger.gazebo.xacro -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/urdf
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/meshes/bases/burger_base.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/meshes/sensors/lds.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/meshes/wheels/left_tire.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes
+symbolically linking /home/sanmaster/turtlebot_development/build/simple_commands/meshes/wheels/right_tire.stl -> /home/sanmaster/turtlebot_development/install/simple_commands/share/simple_commands/meshes

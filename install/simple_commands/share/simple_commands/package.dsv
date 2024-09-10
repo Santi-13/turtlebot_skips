@@ -4,3 +4,6 @@ source;share/simple_commands/hook/pythonpath.sh
 source;share/simple_commands/hook/ament_prefix_path.ps1
 source;share/simple_commands/hook/ament_prefix_path.dsv
 source;share/simple_commands/hook/ament_prefix_path.sh
+source;../../build/simple_commands/share/simple_commands/hook/pythonpath_develop.ps1
+source;../../build/simple_commands/share/simple_commands/hook/pythonpath_develop.dsv
+source;../../build/simple_commands/share/simple_commands/hook/pythonpath_develop.sh
