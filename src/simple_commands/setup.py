@@ -25,7 +25,8 @@ setup(
         'console_scripts': [
             'movement_publisher = simple_commands.movement_publisher:main',
             'aruco_publisher = simple_commands.aruco_publisher:main',
-            'aruco_subscriber = simple_commands.aruco_subscriber:main'
+            'aruco_subscriber = simple_commands.aruco_subscriber:main',
+            'robots_formation = simple_commands.robots_formation:main'
         ],
     },
 )
