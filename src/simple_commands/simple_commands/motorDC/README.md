@@ -2,7 +2,6 @@
 
 Este proyecto implementa dos tipos de control para un motor de corriente directa (DC): Control PID y Control Super Twisting. A continuación, se describen las diferencias, ventajas y desventajas de cada uno, así como el propósito de los archivos incluidos.
 
-
 ## Control PID (Proporcional-Integral-Derivativo)
 
 El control PID es un algoritmo de control utilizado comúnmente en sistemas de control de lazo cerrado. El controlador calcula una señal de control `u` basada en tres términos:
