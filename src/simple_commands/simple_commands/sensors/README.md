@@ -4,7 +4,7 @@ Este directorio contiene scripts relacionados con la adquisición de datos de se
 
 ## Estructura de archivos
 
-- **`video_cel_v6.m`**: Script que utiliza una cámara web para capturar imágenes en tiempo real y detectar objetos basados en colores específicos (azul y amarillo). El script genera una cuadrícula en la imagen y calcula las coordenadas (X, Y) en función de los objetos detectados, permitiendo visualizar la posición relativa de los mismos. También dibuja líneas entre los objetos amarillos y calcula el punto medio entre ellos.
+- **`video_cel_v6.m`**: Script que utiliza una cámara web para capturar imágenes en tiempo real y detectar objetos basados en colores específicos (azul y amarillo). El script genera una cuadrícula en la imagen y calcula las coordenadas (X, Y) en función de los objetos detectados, permitiendo visualizar la posición relativa de los mismos. También dibuja líneas entre los objetos amarillos y calcula el punto medio entre ellos. Posterirormente se cambio para que identifique ArUcos para obtener sus cordenadas.
   
 - **`kalman_filter.m`**: Implementación de un filtro de Kalman que se puede utilizar para mejorar las mediciones de posición obtenidas de los datos de los sensores, reduciendo el ruido y optimizando la precisión de los cálculos.
 
