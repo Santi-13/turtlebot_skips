@@ -32,6 +32,8 @@ angleArray = [0; 0];
 figure;
 set(gcf, 'Name', 'Detección de ArUco con Cámara Web');
 
+coordinates = zeros([2,2]);
+
 while ishandle(gcf)
     % Capturar una imagen desde la cámara web
     img = snapshot(cam);
@@ -119,14 +121,22 @@ while ishandle(gcf)
      % Publicar las coordenadas en el tópico ROS 2 si se encontraron marcadores
     
   
-    arucoMsg.data(1) = coordinates(1,1);
-    arucoMsg.data(2) = coordinates(1,2);
-    arucoMsg.data(3) = coordinates(2,1);
-    arucoMsg.data(4) = coordinates(2,2);
+    
 
+    if not(isempty(validMarkers))
+        arucoMsg.data(1) = coordinates(1,1);
+        arucoMsg.data(2) = coordinates(1,2);
+        arucoMsg.data(3) = angleArray(1);
 
-    arucoMsg.data(5) = angleArray(1);
-    arucoMsg.data(6) = angleArray(2);
+        if length(validMarkers) ~= 1
+            arucoMsg.data(4) = coordinates(2,1);
+            arucoMsg.data(5) = coordinates(2,1);
+            arucoMsg.data(6) = angleArray(2);
+        end
+    end
+    
+    
+    
     send(arucoPub, arucoMsg);
 
     coordinates = [];
