@@ -2,6 +2,10 @@
 
 Este directorio contiene scripts relacionados con la adquisición de datos de sensores y el procesamiento de imágenes en tiempo real utilizando MATLAB. Los scripts permiten capturar información visual a través de una cámara, detectar colores específicos y aplicar filtros de Kalman para mejorar la precisión de las mediciones.
 
+## Video demostrativo
+
+![Lectura_camara_interna_pres-ezgif com-optimize (1)](https://github.com/user-attachments/assets/6d210cb6-051c-40ef-aefb-b51ddec8bd9b)
+
 ## Estructura de archivos
 
 - **`video_cel_v6.m`**: Script que utiliza una cámara web para capturar imágenes en tiempo real y detectar objetos basados en colores específicos (azul y amarillo). El script genera una cuadrícula en la imagen y calcula las coordenadas (X, Y) en función de los objetos detectados, permitiendo visualizar la posición relativa de los mismos. También dibuja líneas entre los objetos amarillos y calcula el punto medio entre ellos. Posterirormente se cambio para que identifique ArUcos para obtener sus cordenadas.
