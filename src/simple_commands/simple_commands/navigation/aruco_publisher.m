@@ -110,7 +110,10 @@ function aruco_publisher(cameraParams)
             % plot(bottomLineX, bottomLineY, 'b-', 'LineWidth', 2);
             % text(midPointX, midPointY, sprintf('%.2f°', angleDeg), 'Color', 'cyan', 'FontSize', 12, 'HorizontalAlignment', 'center');
             % 
+            % hold off;
             % 
+            % drawnow;
+
             fprintf('ID: %d, World X: %.2f mm, World Y: %.2f mm\n', ids(i), worldCoords(1), worldCoords(2));
             text(centroidX, centroidY + 20, sprintf('(%.1f mm, %.1f mm)', worldCoords(1), worldCoords(2)), ...
                 'Color', 'cyan', 'FontSize', 10, 'HorizontalAlignment', 'center');
@@ -184,9 +187,7 @@ function aruco_publisher(cameraParams)
    
         coordinates = [];
     
-        hold off;
-   
-        drawnow;
+        
     end
         
     % Liberar la cámara y el nodo

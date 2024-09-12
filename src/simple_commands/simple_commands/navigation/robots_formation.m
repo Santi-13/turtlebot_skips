@@ -2,24 +2,24 @@ clear all; close all; clc;
 %% Constantes
 % Tiempo
 SIMULATION_TIME = 50;  % Tiempo total de simulación en segundos
-TIME_STEP = 0.05;      % Intervalo de tiempo en segundos
+TIME_STEP = 0.1;      % Intervalo de tiempo en segundos
 
 %% Formación
 DESIRED_DISTANCE = 0.1;  % Distancia deseada entre robots en metros
 
 %% Límites de velocidad
-MAX_LINEAR_VELOCITY = 0.8;  % Velocidad lineal máxima en m/s
-MAX_ANGULAR_VELOCITY = 0.5 * pi;  % Velocidad angular máxima en rad/s
+MAX_LINEAR_VELOCITY = 0.1;  % Velocidad lineal máxima en m/s
+MAX_ANGULAR_VELOCITY = 1 * pi;  % Velocidad angular máxima en rad/s
 
 %% Ganancias de control
 DISTANCE_GAIN = 5.5;  % Ganancia proporcional para control de distancia
-ROTATION_GAIN = 1;    % Ganancia proporcional para control de rotación
+ROTATION_GAIN = 0.5;    % Ganancia proporcional para control de rotación
 
 %% Umbrales
 VELOCITY_THRESHOLD = 0.01;  % Umbral para considerar velocidad cero
 ANGULAR_VELOCITY_THRESHOLD = 0.1;  % Umbral para detener movimiento lineal
 ORIENTATION_THRESHOLD = pi/32;  % Umbral para orientación del líder
-GOAL_REACHED_THRESHOLD = 0.02;  % Umbral para considerar objetivo alcanzado
+GOAL_REACHED_THRESHOLD = 0.035;  % Umbral para considerar objetivo alcanzado
 
 %% Visualización
 PLOT_AXIS_LIMIT = 2;  % Límite de los ejes en la visualización
@@ -29,7 +29,7 @@ ORIENTATION_LINE_LENGTH = 0.1;  % Longitud de la línea que indica orientación
 movementNode = ros2node('/movement_publisher_node');
 twistPub1 = ros2publisher(movementNode,'/tb3_0/cmd_vel','geometry_msgs/Twist');
 twistMsg1 = ros2message('geometry_msgs/Twist');
-twistPub2 = ros2publisher(movementNode,'/cmd_vel','geometry_msgs/Twist');
+twistPub2 = ros2publisher(movementNode,'/tb3_6/cmd_vel','geometry_msgs/Twist');
 twistMsg2 = ros2message('geometry_msgs/Twist');
 
 %% Subscribers
@@ -68,12 +68,12 @@ if not(isempty(arucoSubMsg.data))
 end
 
 % Robot Lider (Virtual)
-pl = [0.4; 0.2];
+pl = [0.4; 0.25];
 thetal = 0;
 
 %% Objetivos Lider (Robot Virtual)
-x_path = [0.1,     0.4,    0.1     ];
-y_path = [0.2,     0.2,    0.2     ];
+x_path = [0.1,     0.55,    0.55,     0.55     ];
+y_path = [0.25,     0.25,    0.5,     0.25     ];
 counter = 1;    % Contador para elegir que punto objetivo hay que seguir
 
 % Posiciones deseadas
@@ -90,6 +90,7 @@ dd = DESIRED_DISTANCE;         % Distancia entre robots
 vMax = MAX_LINEAR_VELOCITY;
 wMax = MAX_ANGULAR_VELOCITY;
 v_extra = TIME_STEP;
+leader_reached = 0;
 
 % tic
 while t < tf         
@@ -161,32 +162,34 @@ while t < tf
     [thetae2, v2_norm] = differential_reverse(thetae2, v2_norm);
 
     %% Leyes de control velocidad angular
-    if abs(v1_norm) < 0.01
+    if abs(v1_norm) < 0.02
         w1 = 0;
     else
         w1 = -wMax * tanh( ( kpr*thetae1 )^3 / wMax);
     end
 
-    if abs(v2_norm) < 0.01
+    if abs(v2_norm) < 0.02
         w2 = 0;
     else
         w2 = -wMax * tanh( ( kpr*thetae2 )^3 / wMax);
     end
 
-    if abs(w1) > 0.1
+    if abs(w1) > 0.05      
         v1_norm = 0;
+        % w1 = 0;
     end
     
-    if abs(w2) > 0.1
+    if abs(w2) > 0.05
         v2_norm = 0;
+        % w2 = 0;
     end
 
-    wl = -wMax * tanh( ( kpr*thetael )^3 / wMax);
+    wl = -wMax * tanh( ( 1.5*kpr*thetael )^1 / wMax);
     
     if abs(thetael) > ORIENTATION_THRESHOLD
         vl = 0;
     else
-        vl = vMax* tanh( ( 0.4*kpd*d_l ) / vMax);
+        vl = vMax* tanh( ( 1.0*kpd*d_l ) / vMax);
     end
     
     fprintf('Velocidad robot 1: %f\n', v1_norm);
@@ -201,13 +204,13 @@ while t < tf
 
     twistMsg1.linear.x = v1_norm;
     twistMsg1.angular.z = -w1;
-    twistMsg2.linear.x = v2_norm;
+    twistMsg2.linear.x = -v2_norm;
     twistMsg2.angular.z = -w2;
      
-    % twistMsg1.linear.x = 0;
-    % twistMsg1.angular.z = 0;
-    % twistMsg2.linear.x = 0;
-    % twistMsg2.angular.z = 0;
+    twistMsg1.linear.x = 0;
+    twistMsg1.angular.z = 0;
+    twistMsg2.linear.x = 0;
+    twistMsg2.angular.z = 0;
 
     
     %% Datos de la cámara
@@ -263,7 +266,13 @@ while t < tf
     v_extra = TIME_STEP;
     %% Change to next objective point
     if abs(d_l) < GOAL_REACHED_THRESHOLD  
-       counter = rem(counter,length(x_path))+1;
+        leader_reached = 1;
+    else
+        leader_reached = 0;
+    end
+
+    if leader_reached && v1_norm < VELOCITY_THRESHOLD &&  w1 < ANGULAR_VELOCITY_THRESHOLD && d_1d < GOAL_REACHED_THRESHOLD && v2_norm < VELOCITY_THRESHOLD && w2 < ANGULAR_VELOCITY_THRESHOLD && d_2d < GOAL_REACHED_THRESHOLD
+        counter = rem(counter,length(x_path))+1;
     end
     
     send(twistPub1, twistMsg1);
