@@ -4,35 +4,35 @@ clear all; close all; clc;
 SIMULATION_TIME = 50;  % Tiempo total de simulación en segundos
 TIME_STEP = 0.05;      % Intervalo de tiempo en segundos
 
-% Formación
+%% Formación
 DESIRED_DISTANCE = 0.1;  % Distancia deseada entre robots en metros
 
-% Límites de velocidad
+%% Límites de velocidad
 MAX_LINEAR_VELOCITY = 0.8;  % Velocidad lineal máxima en m/s
 MAX_ANGULAR_VELOCITY = 0.5 * pi;  % Velocidad angular máxima en rad/s
 
-% Ganancias de control
+%% Ganancias de control
 DISTANCE_GAIN = 5.5;  % Ganancia proporcional para control de distancia
 ROTATION_GAIN = 1;    % Ganancia proporcional para control de rotación
 
-% Umbrales
+%% Umbrales
 VELOCITY_THRESHOLD = 0.01;  % Umbral para considerar velocidad cero
 ANGULAR_VELOCITY_THRESHOLD = 0.1;  % Umbral para detener movimiento lineal
 ORIENTATION_THRESHOLD = pi/32;  % Umbral para orientación del líder
 GOAL_REACHED_THRESHOLD = 0.02;  % Umbral para considerar objetivo alcanzado
 
-% Visualización
+%% Visualización
 PLOT_AXIS_LIMIT = 2;  % Límite de los ejes en la visualización
 ORIENTATION_LINE_LENGTH = 0.1;  % Longitud de la línea que indica orientación
 
-% Initialize ROS 2 node and publishers
+%% Initialize ROS 2 node and publishers
 movementNode = ros2node('/movement_publisher_node');
 twistPub1 = ros2publisher(movementNode,'/tb3_0/cmd_vel','geometry_msgs/Twist');
 twistMsg1 = ros2message('geometry_msgs/Twist');
 twistPub2 = ros2publisher(movementNode,'/cmd_vel','geometry_msgs/Twist');
 twistMsg2 = ros2message('geometry_msgs/Twist');
 
-% Subscribers
+%% Subscribers
 arucoSub = ros2subscriber(movementNode, '/aruco_coordinates', 'std_msgs/Float64MultiArray');
 odomSub1 = ros2subscriber(movementNode, '/tb3_1/odom', 'nav_msgs/Odometry');
 odomSub2 = ros2subscriber(movementNode, '/odom', 'nav_msgs/Odometry');
