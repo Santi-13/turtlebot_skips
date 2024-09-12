@@ -30,8 +30,8 @@ function aruco_publisher(cameraParams)
     
     angleArray = [0; 0];
     
-    figure;
-    set(gcf, 'Name', 'Detección de ArUco con Cámara Web');
+    % figure;
+    % set(gcf, 'Name', 'Detección de ArUco con Cámara Web');
     
     coordinates = zeros([2,2]);
     
@@ -42,30 +42,9 @@ function aruco_publisher(cameraParams)
         % Corregir la distorsión de la imagen usando los intrínsecos
         imgUndistorted = undistortImage(img, intrinsics);
         
-        % Mostrar la imagen corregida
-        imshow(imgUndistorted);
-        hold on;
-
         % Obtener el tamaño de la imagen para la cuadrícula
-        [imgHeight, imgWidth, ~] = size(imgUndistorted);
-
-        % Dibujar la cuadrícula con coordenadas positivas desde la esquina superior izquierda
-        for x = 0:gridSize:imgWidth
-            % Dibujar las líneas de la cuadrícula verticales
-            line([x, x], [1, imgHeight], 'Color', [0, 1, 0, 0.5], 'LineWidth', 0.5);
-            % Mostrar las coordenadas en milímetros ajustadas
-            text(x, 20, sprintf('%.1f mm', x * pixelsToMM), 'Color', 'black', 'FontSize', 10, 'HorizontalAlignment', 'center');
-        end
-
-        for y = 0:gridSize:imgHeight
-            % Dibujar las líneas de la cuadrícula horizontales
-            line([1, imgWidth], [y, y], 'Color', [0, 1, 0, 0.5], 'LineWidth', 0.5);
-            % Mostrar las coordenadas en milímetros ajustadas
-            text(20, y, sprintf('%.1f mm', y * pixelsToMM), 'Color', 'black', 'FontSize', 10, 'HorizontalAlignment', 'right');
-        end
-    
+        [imgHeight, imgWidth, ~] = size(imgUndistorted);        
         
-    
         % Detectar los marcadores ArUco en la imagen corregida
         [ids, locs, detectedFamily, confidences] = readArucoMarker(imgUndistorted);
     
@@ -79,29 +58,19 @@ function aruco_publisher(cameraParams)
             end
         end
         
-    
         for i = validMarkers
             corners = locs(:,:,i);
-            plot([corners(:,1); corners(1,1)], [corners(:,2); corners(1,2)], 'r-', 'LineWidth', 2);
-            
+                        
             centroidX = mean(corners(:,1));
-            centroidY = mean(corners(:,2));
-            
-            plot(centroidX, centroidY, 'go', 'MarkerSize', 10, 'LineWidth', 2);
-            text(centroidX, centroidY, sprintf('ID: %d', ids(i)), 'Color', 'yellow', 'FontSize', 12, 'HorizontalAlignment', 'center');
+            centroidY = mean(corners(:,2));            
             
             % Convertir los puntos del marcador a coordenadas del mundo en milímetros
             worldCoords = [centroidX * pixelsToMM, centroidY * pixelsToMM];
             coordinates = [coordinates; worldCoords]; % Almacenar las coordenadas
     
-            fprintf('ID: %d, World X: %.2f mm, World Y: %.2f mm\n', ids(i), worldCoords(1), worldCoords(2));
-            text(centroidX, centroidY + 20, sprintf('(%.1f mm, %.1f mm)', worldCoords(1), worldCoords(2)), ...
-                'Color', 'cyan', 'FontSize', 10, 'HorizontalAlignment', 'center');
-            
             % Identificar las esquinas inferiores del marcador y calcular ángulo
             bottomLineX = [corners(3,1), corners(4,1)];
             bottomLineY = [corners(3,2), corners(4,2)];
-            plot(bottomLineX, bottomLineY, 'b-', 'LineWidth', 2);
             
             % Calcular el ángulo de la línea inferior con respecto a la línea horizontal
             deltaX = bottomLineX(2) - bottomLineX(1);
@@ -113,35 +82,110 @@ function aruco_publisher(cameraParams)
             % Mostrar el ángulo en la imagen
             midPointX = mean(bottomLineX);
             midPointY = mean(bottomLineY);
-            text(midPointX, midPointY, sprintf('%.2f°', angleDeg), 'Color', 'cyan', 'FontSize', 12, 'HorizontalAlignment', 'center');
-            
-           
+
+            % Mostrar la imagen corregida
+            % imshow(imgUndistorted);
+            % hold on;
+            % 
+            % % Dibujar la cuadrícula con coordenadas positivas desde la esquina superior izquierda
+            % for x = 0:gridSize:imgWidth
+            %     % Dibujar las líneas de la cuadrícula verticales
+            %     line([x, x], [1, imgHeight], 'Color', [0, 1, 0, 0.5], 'LineWidth', 0.5);
+            %     % Mostrar las coordenadas en milímetros ajustadas
+            %     text(x, 20, sprintf('%.1f mm', x * pixelsToMM), 'Color', 'black', 'FontSize', 10, 'HorizontalAlignment', 'center');
+            % end
+            % 
+            % for y = 0:gridSize:imgHeight
+            %     % Dibujar las líneas de la cuadrícula horizontales
+            %     line([1, imgWidth], [y, y], 'Color', [0, 1, 0, 0.5], 'LineWidth', 0.5);
+            %     % Mostrar las coordenadas en milímetros ajustadas
+            %     text(20, y, sprintf('%.1f mm', y * pixelsToMM), 'Color', 'black', 'FontSize', 10, 'HorizontalAlignment', 'right');
+            % end    
+            % 
+            % plot([corners(:,1); corners(1,1)], [corners(:,2); corners(1,2)], 'r-', 'LineWidth', 2);
+            % 
+            % plot(centroidX, centroidY, 'go', 'MarkerSize', 10, 'LineWidth', 2);
+            % text(centroidX, centroidY, sprintf('ID: %d', ids(i)), 'Color', 'yellow', 'FontSize', 12, 'HorizontalAlignment', 'center');
+            % 
+            % plot(bottomLineX, bottomLineY, 'b-', 'LineWidth', 2);
+            % text(midPointX, midPointY, sprintf('%.2f°', angleDeg), 'Color', 'cyan', 'FontSize', 12, 'HorizontalAlignment', 'center');
+            % 
+            % 
+            fprintf('ID: %d, World X: %.2f mm, World Y: %.2f mm\n', ids(i), worldCoords(1), worldCoords(2));
+            text(centroidX, centroidY + 20, sprintf('(%.1f mm, %.1f mm)', worldCoords(1), worldCoords(2)), ...
+                'Color', 'cyan', 'FontSize', 10, 'HorizontalAlignment', 'center');
             % Imprimir el ángulo en la consola
             fprintf('ID: %d, Ángulo con la horizontal: %.2f°\n', ids(i), angleDeg);
+            disp(ids)
         end
          % Publicar las coordenadas en el tópico ROS 2 si se encontraron marcadores
         
-        if not(isempty(validMarkers))
-            arucoMsg.data(1) = coordinates(1,1);
-            arucoMsg.data(2) = coordinates(1,2);
-            arucoMsg.data(3) = angleArray(1);
-    
-            if length(validMarkers) ~= 1
+        zeroIdIndex = 0;
+        oneIdIndex = 0;
+        for i=1: length(ids)
+            if ids(i) == 0
+                zeroIdIndex = i;
+            end
+            if ids(i) == 1
+                oneIdIndex = i;
+            end
+        end
+
+        if zeroIdIndex && oneIdIndex && not(isempty(validMarkers)) && length(coordinates) <= 2
+            if zeroIdIndex < oneIdIndex
+                arucoMsg.data(1) = coordinates(1,1);
+                arucoMsg.data(2) = coordinates(1,2);
+                arucoMsg.data(3) = angleArray(1);
+
                 arucoMsg.data(4) = coordinates(2,1);
                 arucoMsg.data(5) = coordinates(2,2);
                 arucoMsg.data(6) = angleArray(2);
+            else
+                arucoMsg.data(1) = coordinates(2,1);
+                arucoMsg.data(2) = coordinates(2,2);
+                arucoMsg.data(3) = angleArray(2);
+
+                arucoMsg.data(4) = coordinates(1,1);
+                arucoMsg.data(5) = coordinates(1,2);
+                arucoMsg.data(6) = angleArray(1);
             end
+
+            arucoMsg.data(7) = 1;   % Detected ID0
+            arucoMsg.data(8) = 1;   % Detected ID1
+
+        elseif zeroIdIndex && not(isempty(validMarkers)) && length(coordinates) <= 2
+                arucoMsg.data(1) = coordinates(1,1);
+                arucoMsg.data(2) = coordinates(1,2);
+                arucoMsg.data(3) = angleArray(1);
+
+                arucoMsg.data(4) = 0;
+                arucoMsg.data(5) = 0;
+                arucoMsg.data(6) = 0;
+
+                arucoMsg.data(7) = 1;   % Detected ID0
+                arucoMsg.data(8) = 0;   % Detected ID1
+
+        elseif oneIdIndex && not(isempty(validMarkers)) && length(coordinates) <= 2
+                arucoMsg.data(1) = 0;
+                arucoMsg.data(2) = 0;
+                arucoMsg.data(3) = 0;
+
+                arucoMsg.data(4) = coordinates(1,1);
+                arucoMsg.data(5) = coordinates(1,2);
+                arucoMsg.data(6) = angleArray(1);
+
+                arucoMsg.data(7) = 0;   % Detected ID0
+                arucoMsg.data(8) = 1;   % Detected ID1
         end
-        
+
         
         
         send(arucoPub, arucoMsg);
-    
+   
         coordinates = [];
     
-    
         hold off;
-        pause(0.1);
+   
         drawnow;
     end
         
