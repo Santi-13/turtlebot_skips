@@ -1,3 +1,4 @@
+LICENSE
 package.xml
 setup.cfg
 setup.py
@@ -15,12 +16,8 @@ meshes/wheels/left_tire.stl
 meshes/wheels/right_tire.stl
 resource/simple_commands
 simple_commands/__init__.py
-simple_commands.egg-info/PKG-INFO
-simple_commands.egg-info/SOURCES.txt
-simple_commands.egg-info/dependency_links.txt
-simple_commands.egg-info/entry_points.txt
-simple_commands.egg-info/requires.txt
-simple_commands.egg-info/top_level.txt
-simple_commands.egg-info/zip-safe
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
 urdf/turtlebot3_burger.gazebo.xacro
 urdf/turtlebot3_burger.urdf.xacro

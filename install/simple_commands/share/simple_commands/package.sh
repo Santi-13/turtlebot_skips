@@ -80,7 +80,6 @@ _colcon_package_sh_source_script() {
 # source sh hooks
 _colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/share/simple_commands/hook/pythonpath.sh"
 _colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/share/simple_commands/hook/ament_prefix_path.sh"
-_colcon_package_sh_source_script "$COLCON_CURRENT_PREFIX/../../build/simple_commands/share/simple_commands/hook/pythonpath_develop.sh"
 
 unset _colcon_package_sh_source_script
 unset COLCON_CURRENT_PREFIX

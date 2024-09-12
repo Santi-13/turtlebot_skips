@@ -1,4 +1,4 @@
-# Proyecto AD2023: Sistema Ciberfísico Móvil Colaborativo e Intercomunicado
+# Proyecto AD2024: Sistema Ciberfísico Móvil Colaborativo e Intercomunicado
 
 ## Descripción
 Este proyecto se enfoca en el desarrollo de un sistema robótico móvil y colaborativo, telecontrolado, que integre tecnologías de robótica y comunicaciones para resolver problemas de navegación industrial. Se trabajará en colaboración con un socio formador, Intel Labs, atendiendo los requerimientos de normativas nacionales e internacionales.
