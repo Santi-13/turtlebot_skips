@@ -1,6 +1,0 @@
-[console_scripts]
-aruco_publisher = simple_commands.aruco_publisher:main
-aruco_subscriber = simple_commands.aruco_subscriber:main
-movement_publisher = simple_commands.movement_publisher:main
-robots_formation = simple_commands.robots_formation:main
-
