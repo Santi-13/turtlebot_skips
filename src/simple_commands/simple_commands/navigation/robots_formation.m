@@ -1,4 +1,30 @@
 clear all; close all; clc;
+%% Constantes
+% Tiempo
+SIMULATION_TIME = 50;  % Tiempo total de simulación en segundos
+TIME_STEP = 0.05;      % Intervalo de tiempo en segundos
+
+% Formación
+DESIRED_DISTANCE = 0.1;  % Distancia deseada entre robots en metros
+
+% Límites de velocidad
+MAX_LINEAR_VELOCITY = 0.8;  % Velocidad lineal máxima en m/s
+MAX_ANGULAR_VELOCITY = 0.5 * pi;  % Velocidad angular máxima en rad/s
+
+% Ganancias de control
+DISTANCE_GAIN = 5.5;  % Ganancia proporcional para control de distancia
+ROTATION_GAIN = 1;    % Ganancia proporcional para control de rotación
+
+% Umbrales
+VELOCITY_THRESHOLD = 0.01;  % Umbral para considerar velocidad cero
+ANGULAR_VELOCITY_THRESHOLD = 0.1;  % Umbral para detener movimiento lineal
+ORIENTATION_THRESHOLD = pi/32;  % Umbral para orientación del líder
+GOAL_REACHED_THRESHOLD = 0.02;  % Umbral para considerar objetivo alcanzado
+
+% Visualización
+PLOT_AXIS_LIMIT = 2;  % Límite de los ejes en la visualización
+ORIENTATION_LINE_LENGTH = 0.1;  % Longitud de la línea que indica orientación
+
 % Initialize ROS 2 node and publishers
 movementNode = ros2node('/movement_publisher_node');
 twistPub1 = ros2publisher(movementNode,'/cmd_vel','geometry_msgs/Twist');
@@ -11,9 +37,9 @@ arucoSub = ros2subscriber(movementNode, '/aruco_coordinates', 'std_msgs/Float64M
 arucoSubMsg = ros2message(arucoSub);
 
 %% Tiempo
-tf = 50;
+tf = SIMULATION_TIME;
 t = 0;
-dt = 0.1;
+dt = TIME_STEP;
 
 %% Estados Iniciales de Robots
 % Robot 1
@@ -41,14 +67,14 @@ pd2 = [0; 0];
 pdl = [0; 0];
 
 %% Ganancias
-kpd = 1;
-kpr = 1;
+kpd = DISTANCE_GAIN;
+kpr = ROTATION_GAIN;
 
 %% Variables
-dd = 0.1;         % Distancia entre robots
-vMax = 0.8;
-wMax = 0.5*pi;
-v_extra = 0.05;
+dd = DESIRED_DISTANCE;         % Distancia entre robots
+vMax = MAX_LINEAR_VELOCITY;
+wMax = MAX_ANGULAR_VELOCITY;
+v_extra = TIME_STEP;
 
 % tic
 while t < tf         
@@ -126,7 +152,7 @@ while t < tf
     w2 = -wMax * tanh( ( kpr*thetae2 ) / wMax);
     wl = -wMax * tanh( ( kpr*thetael ) / wMax);
     
-    if abs(thetael) > pi/32
+    if abs(thetael) > ORIENTATION_THRESHOLD
         vl = 0;
     else
         vl = vMax* tanh( ( kpd*d_l ) / vMax);
@@ -164,9 +190,9 @@ while t < tf
     pl = pl + pl_dot * dt;
     thetal = thetal + thetal_dot*dt;
     
-    v_extra = 0.05;
+    v_extra = TIME_STEP;
     %% Change to next objective point
-    if abs(d_l) < 0.02  
+    if abs(d_l) < GOAL_REACHED_THRESHOLD  
        counter = rem(counter,length(x_path))+1;
        % counter = counter + 1;
        v_extra = 0;
@@ -186,15 +212,14 @@ while t < tf
     scatter(pl(1),pl(2),'color','black','LineWidth',2);
     scatter(pd1(1),pd1(2),'color','green','LineWidth',1);
     scatter(pd2(1),pd2(2),'color','green','LineWidth',1);
-    plot([p1(1),p1(1)+0.1*cos(theta1)],[p1(2),p1(2)+0.1*sin(theta1)],'color','red','LineWidth',2)
-    plot([p2(1),p2(1)+0.1*cos(theta2)],[p2(2),p2(2)+0.1*sin(theta2)],'color','red','LineWidth',2)
-    plot([pl(1),pl(1)+0.1*cos(thetal)],[pl(2),pl(2)+0.1*sin(thetal)],'color','red','LineWidth',2)
+    plot([p1(1),p1(1)+ORIENTATION_LINE_LENGTH*cos(theta1)],[p1(2),p1(2)+ORIENTATION_LINE_LENGTH*sin(theta1)],'color','red','LineWidth',2)
+    plot([p2(1),p2(1)+ORIENTATION_LINE_LENGTH*cos(theta2)],[p2(2),p2(2)+ORIENTATION_LINE_LENGTH*sin(theta2)],'color','red','LineWidth',2)
+    plot([pl(1),pl(1)+ORIENTATION_LINE_LENGTH*cos(thetal)],[pl(2),pl(2)+ORIENTATION_LINE_LENGTH*sin(thetal)],'color','red','LineWidth',2)
     
     hold off
     grid on
-    axis([-2,2,-2,2]);
+    axis([-PLOT_AXIS_LIMIT,PLOT_AXIS_LIMIT,-PLOT_AXIS_LIMIT,PLOT_AXIS_LIMIT]);
 end
 
 % Clean up
 clear movementNode twistPub twistMsg;
-
