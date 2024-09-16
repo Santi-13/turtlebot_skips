@@ -51,7 +51,7 @@ El sistema será evaluado mediante simulaciones y pruebas físicas, integrando d
 1. **Semana 1**: Diseño detallado de la solución del reto (reporte en formato IEEE). Esto se puede encontrar en [`/src/documentation/`](src/documentation/).
 2. **Semana 4**: Simulación de algoritmos de control en MATLAB y control de motores. Esto se puede encontrar en [`/src/simple_commands/simple_commands/navigation/`](src/simple_commands/simple_commands/navigation/).
 3. **Semana 5**: Enlace de comunicación Wi-Fi entre la PC, ESP32 y robot, y algoritmo de coordinación entre robots. Esto se puede encontrar en [`/src/simple_commands/simple_commands/esp32/`](src/simple_commands/simple_commands/esp32/).
-4. **Semana 6**: Presentación final del sistema robótico integrado y documentación técnica completa.
+4. **Semana 6**: Presentación final del sistema robótico integrado y documentación técnica completa Esto se puede encontrar en [`/src/documentation`](/src/documentation)..
 
 ## Requisitos Técnicos
 - MATLAB y CoppeliaSim para simulación y control.
