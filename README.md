@@ -1,7 +1,10 @@
 # Proyecto AD2024: Sistema Ciberfísico Móvil Colaborativo e Intercomunicado
 
 
-Uploading evidencia-final-envivo_XEY3VA01.mp4…
+
+https://github.com/user-attachments/assets/cc5f71c8-b031-4abd-ad3f-63ddde116f71
+
+
 
 
 ## Descripción
